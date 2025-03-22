@@ -1,0 +1,205 @@
+/* Base styles for the PDF report */
+.pdf-report {
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  color: #333;
+  line-height: 1.5;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+/* Print-specific styles */
+@media print {
+  /* Overall page setup */
+  @page {
+    size: A4;
+    margin: 1.5cm;
+  }
+  
+  body {
+    background-color: white !important;
+  }
+  
+  /* Hide elements not needed in PDF */
+  .btn, .text-end, .text-center {
+    display: none !important;
+  }
+  
+  /* Report header */
+  .pdf-report h1 {
+    color: #2c3e50;
+    font-size: 24pt;
+    margin-bottom: 20pt;
+    border-bottom: 2pt solid #3498db;
+    padding-bottom: 8pt;
+    text-align: center;
+  }
+  
+  /* Section headers */
+  .pdf-report h2 {
+    color: #2c3e50;
+    font-size: 16pt;
+    margin-top: 16pt;
+    margin-bottom: 8pt;
+    border-bottom: 1pt solid #bdc3c7;
+    padding-bottom: 4pt;
+  }
+  
+  /* Sub-section headers */
+  .pdf-report h5 {
+    color: #34495e;
+    font-size: 12pt;
+    margin-top: 12pt;
+    margin-bottom: 6pt;
+    font-weight: 600;
+  }
+  
+  /* Card styling */
+  .pdf-report .card {
+    border: 1pt solid #e0e0e0;
+    border-radius: 4pt;
+    margin-bottom: 16pt;
+    page-break-inside: avoid;
+    box-shadow: none !important;
+  }
+  
+  .pdf-report .card-body {
+    padding: 12pt;
+  }
+  
+  /* Alert styling */
+  .pdf-report .alert {
+    padding: 10pt;
+    border-radius: 4pt;
+    border-width: 1pt;
+    margin-bottom: 12pt;
+    font-weight: 500;
+  }
+  
+  .pdf-report .alert-danger {
+    background-color: #ffebee !important;
+    color: #c62828 !important;
+    border: 1pt solid #ef9a9a !important;
+  }
+  
+  .pdf-report .alert-success {
+    background-color: #e8f5e9 !important;
+    color: #2e7d32 !important;
+    border: 1pt solid #a5d6a7 !important;
+  }
+  
+  /* List styling */
+  .pdf-report ul.list-group {
+    margin-bottom: 12pt;
+  }
+  
+  .pdf-report .list-group-item {
+    border: none;
+    border-bottom: 1pt solid #ecf0f1;
+    padding: 8pt 4pt;
+    break-inside: avoid;
+  }
+  
+  .pdf-report .list-group-item:last-child {
+    border-bottom: none;
+  }
+  
+  /* Risk factors section */
+  .pdf-report .card:nth-of-type(2) {
+    border-left: 4pt solid #e74c3c;
+  }
+  
+  /* Medications section */
+  .pdf-report .card:nth-of-type(4) {
+    border-left: 4pt solid #3498db;
+  }
+  
+  /* Doctors section */
+  .pdf-report .card:nth-of-type(5) {
+    border-left: 4pt solid #9b59b6;
+  }
+  
+  /* Exercises section */
+  .pdf-report .card:nth-of-type(6) {
+    border-left: 4pt solid #2ecc71;
+  }
+  
+  /* Diet section */
+  .pdf-report .card:nth-of-type(7) {
+    border-left: 4pt solid #f1c40f;
+  }
+  
+  /* Foods to include */
+  .pdf-report .card:nth-of-type(7) ul:nth-of-type(1) .list-group-item::before {
+    content: '✓ ';
+    color: #27ae60;
+    font-weight: bold;
+  }
+  
+  /* Foods to avoid */
+  .pdf-report .card:nth-of-type(7) ul:nth-of-type(2) .list-group-item::before {
+    content: '✗ ';
+    color: #e74c3c;
+    font-weight: bold;
+  }
+  
+  /* Lifestyle tips section */
+  .pdf-report .card:nth-of-type(8) {
+    border-left: 4pt solid #1abc9c;
+  }
+  
+  /* Overall assessment */
+  .pdf-report .card:nth-of-type(3) p {
+    font-style: italic;
+    padding: 8pt;
+    background-color: #f8f9fa;
+    border-radius: 4pt;
+  }
+  
+  /* First page header */
+  .pdf-report::before {
+    content: '';
+    display: block;
+    border-top: 8pt solid #3498db;
+    margin-bottom: 20pt;
+  }
+  
+  /* Footer with page numbers */
+  .pdf-report::after {
+    content: 'Heart Health Report - Page ' counter(page) ' of ' counter(pages);
+    display: block;
+    text-align: center;
+    font-size: 9pt;
+    color: #7f8c8d;
+    margin-top: 20pt;
+    border-top: 1pt solid #ecf0f1;
+    padding-top: 8pt;
+  }
+  
+  /* Special emphasis for prediction result */
+  .pdf-report .card:first-of-type {
+    background-color: #f8f9fa !important;
+    border: 1pt solid #dee2e6;
+  }
+  
+  /* Prevent text overflow in lists */
+  .pdf-report .list-group-item {
+    word-wrap: break-word;
+    max-width: 100%;
+  }
+  
+  /* Ensure all content is visible */
+  .pdf-report p, 
+  .pdf-report li,
+  .pdf-report .alert {
+    page-break-inside: avoid;
+    orphans: 3;
+    widows: 3;
+  }
+}
